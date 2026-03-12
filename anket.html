@@ -5,191 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yolcu Memnuniyet Anketi</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-        }
-        .container {
-            background-color: white;
-            width: 95%;
-            max-width: 500px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-            text-align: center;
-        }
-        .header {
-            background-color: #003366;
-            color: white;
-            padding: 20px;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px 0; display: flex; justify-content: center; min-height: 100vh; }
+        .container { background-color: white; width: 95%; max-width: 500px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
+        .header { background-color: #003366; color: white; padding: 20px; text-align: center; }
         .header h2 { margin: 0; font-size: 20px; }
         .content { padding: 25px 20px; }
-        
-        .form-group { 
-            margin-bottom: 25px; 
-            text-align: left; 
-            background: #fafafa;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-        label { 
-            display: block; 
-            margin-bottom: 12px; 
-            font-weight: bold; 
-            color: #444; 
-            font-size: 14px;
-        }
-        select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: 14px;
-        }
-        textarea { resize: vertical; height: 100px; }
-        button {
-            background-color: #003366;
-            color: white;
-            border: none;
-            padding: 16px;
-            width: 100%;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        button:hover { background-color: #002244; }
-        .basari-mesaji {
-            display: none;
-            color: #28a745;
-            font-weight: bold;
-            margin-top: 20px;
-            font-size: 18px;
-            padding: 30px 10px;
-        }
+        .form-group { margin-bottom: 25px; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
+        label { display: block; margin-bottom: 12px; font-weight: bold; color: #444; font-size: 14px; }
+        select, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        button { background-color: #003366; color: white; border: none; padding: 16px; width: 100%; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; }
+        .basari-mesaji { display: none; color: #28a745; font-weight: bold; padding: 30px 10px; text-align: center; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header">
-        <h2>Yolculuğunuzu Değerlendirin</h2>
-    </div>
-    
+    <div class="header"><h2>Yolculuğunuzu Değerlendirin</h2></div>
     <div class="content">
         <form id="anketFormu">
-            <div class="form-group">
-                <label>1. Aracın temizliği ve hijyen durumu nasıldı?</label>
-                <select id="q1" required>
-                    <option value="" disabled selected>Puanınızı seçin</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
-                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
-                    <option value="3">⭐⭐⭐ (Orta)</option>
-                    <option value="2">⭐⭐ (Kötü)</option>
-                    <option value="1">⭐ (Çok Kötü)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>2. Şoförün sürüş güvenliği ve trafik kurallarına uyumu nasıldı?</label>
-                <select id="q2" required>
-                    <option value="" disabled selected>Puanınızı seçin</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
-                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
-                    <option value="3">⭐⭐⭐ (Orta)</option>
-                    <option value="2">⭐⭐ (Kötü)</option>
-                    <option value="1">⭐ (Çok Kötü)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>3. Şoförün / Personelin yolculara karşı tutumu nasıldı?</label>
-                <select id="q3" required>
-                    <option value="" disabled selected>Puanınızı seçin</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
-                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
-                    <option value="3">⭐⭐⭐ (Orta)</option>
-                    <option value="2">⭐⭐ (Kötü)</option>
-                    <option value="1">⭐ (Çok Kötü)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>4. Araç içi sıcaklık ve konfor (klima/ısıtma) nasıldı?</label>
-                <select id="q4" required>
-                    <option value="" disabled selected>Puanınızı seçin</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
-                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
-                    <option value="3">⭐⭐⭐ (Orta)</option>
-                    <option value="2">⭐⭐ (Kötü)</option>
-                    <option value="1">⭐ (Çok Kötü)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>5. Seferin zamanında gerçekleşmesi konusunda ne düşünüyorsunuz?</label>
-                <select id="q5" required>
-                    <option value="" disabled selected>Puanınızı seçin</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
-                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
-                    <option value="3">⭐⭐⭐ (Orta)</option>
-                    <option value="2">⭐⭐ (Kötü)</option>
-                    <option value="1">⭐ (Çok Kötü)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>6. Firmamızla yaptığınız bu yolculuğu genel olarak nasıl değerlendirirsiniz?</label>
-                <select id="q6" required>
-                    <option value="" disabled selected>Puanınızı seçin</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
-                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
-                    <option value="3">⭐⭐⭐ (Orta)</option>
-                    <option value="2">⭐⭐ (Kötü)</option>
-                    <option value="1">⭐ (Çok Kötü)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>Eklemek İstedikleriniz</label>
-                <textarea id="yorum" placeholder="Görüşlerinizi buraya yazabilirsiniz..."></textarea>
-            </div>
-
+            <div class="form-group"><label>1. Aracın temizliği nasıldı?</label><select id="q1" required><option value="" disabled selected>Seçin</option><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div>
+            <div class="form-group"><label>2. Sürüş güvenliği nasıldı?</label><select id="q2" required><option value="" disabled selected>Seçin</option><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div>
+            <div class="form-group"><label>3. Şoförün tutumu nasıldı?</label><select id="q3" required><option value="" disabled selected>Seçin</option><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div>
+            <div class="form-group"><label>4. Araç içi konfor/sıcaklık nasıldı?</label><select id="q4" required><option value="" disabled selected>Seçin</option><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div>
+            <div class="form-group"><label>5. Zamanında ulaşım nasıldı?</label><select id="q5" required><option value="" disabled selected>Seçin</option><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div>
+            <div class="form-group"><label>6. Genel memnuniyetiniz nasıldı?</label><select id="q6" required><option value="" disabled selected>Seçin</option><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select></div>
+            <div class="form-group"><label>Eklemek İstedikleriniz</label><textarea id="yorum" placeholder="Görüşlerinizi yazın..."></textarea></div>
             <button type="submit" id="gonderButon">Anketi Gönder</button>
         </form>
-
-        <div class="basari-mesaji" id="basariMesaji">
-            Katılımınız için teşekkür ederiz!
-        </div>
+        <div class="basari-mesaji" id="basariMesaji">Katılımınız için teşekkür ederiz!</div>
     </div>
 </div>
 
 <script>
-    // ÖNEMLİ: Kendi Google Script URL'ni buraya tekrar yapıştır
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYzWK9PW_72n3gEvJDsjd3Z-qI5QUIJg6dW1B8EcOtHySrOFrw_A3RGoQ1a2MCJdXZ/exec";
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const plaka = urlParams.get('plaka') || 'Bilinmeyen Plaka';
+    const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbyYzWK9PW_72n3gEvJDsjd3Z-qI5QUIJg6dW1B8EcOtHySrOFrw_A3RGoQ1a2MCJdXZ/exec";
+    const plaka = new URLSearchParams(window.location.search).get('plaka') || 'Bilinmeyen';
 
     document.getElementById('anketFormu').addEventListener('submit', function(e) {
-        e.preventDefault(); 
-        const gonderButon = document.getElementById('gonderButon');
-        gonderButon.innerText = "Gönderiliyor...";
-        gonderButon.disabled = true;
+        e.preventDefault();
+        const btn = document.getElementById('gonderButon');
+        btn.innerText = "Gönderiliyor...";
+        btn.disabled = true;
 
-        const urlIleVeri = GOOGLE_SCRIPT_URL 
-            + "?plaka=" + encodeURIComponent(plaka) 
+        const params = "?plaka=" + encodeURIComponent(plaka) 
             + "&q1=" + encodeURIComponent(document.getElementById('q1').value)
             + "&q2=" + encodeURIComponent(document.getElementById('q2').value)
             + "&q3=" + encodeURIComponent(document.getElementById('q3').value)
@@ -198,18 +55,12 @@
             + "&q6=" + encodeURIComponent(document.getElementById('q6').value)
             + "&yorum=" + encodeURIComponent(document.getElementById('yorum').value);
 
-        fetch(urlIleVeri, { method: 'POST', mode: 'no-cors' })
-        .then(() => {
+        fetch(GOOGLE_URL + params, { method: 'POST', mode: 'no-cors' }).then(() => {
             document.getElementById('anketFormu').style.display = 'none';
             document.getElementById('basariMesaji').style.display = 'block';
             window.scrollTo(0, 0);
-        })
-        .catch(() => {
-            alert("Hata oluştu.");
-            gonderButon.disabled = false;
         });
     });
 </script>
-
 </body>
 </html>
