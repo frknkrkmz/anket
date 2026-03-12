@@ -55,7 +55,6 @@
             box-sizing: border-box;
             font-family: inherit;
             font-size: 14px;
-            background-color: white;
         }
         textarea { resize: vertical; height: 100px; }
         button {
@@ -69,7 +68,6 @@
             border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 10px;
         }
         button:hover { background-color: #002244; }
         .basari-mesaji {
@@ -140,7 +138,7 @@
             </div>
 
             <div class="form-group">
-                <label>5. Seferin zamanında (dakik) gerçekleşmesi konusunda ne düşünüyorsunuz?</label>
+                <label>5. Seferin zamanında gerçekleşmesi konusunda ne düşünüyorsunuz?</label>
                 <select id="q5" required>
                     <option value="" disabled selected>Puanınızı seçin</option>
                     <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
@@ -164,7 +162,7 @@
             </div>
 
             <div class="form-group">
-                <label>Eklemek İstedikleriniz (Açıklama / Öneri / Şikayet)</label>
+                <label>Eklemek İstedikleriniz</label>
                 <textarea id="yorum" placeholder="Görüşlerinizi buraya yazabilirsiniz..."></textarea>
             </div>
 
@@ -172,55 +170,42 @@
         </form>
 
         <div class="basari-mesaji" id="basariMesaji">
-            Katılımınız için teşekkür ederiz!<br><br>Görüşleriniz hizmet kalitemizi artırmak için değerlendirilecektir.
+            Katılımınız için teşekkür ederiz!
         </div>
     </div>
 </div>
 
 <script>
-    const GOOGLE_SCRIPT_URL = "BURAYA_GOOGLE_SCRIPT_URL_GELMELI";
+    // ÖNEMLİ: Kendi Google Script URL'ni buraya tekrar yapıştır
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYzWK9PW_72n3gEvJDsjd3Z-qI5QUIJg6dW1B8EcOtHySrOFrw_A3RGoQ1a2MCJdXZ/exec";
 
-    // Plaka hala URL'den okunuyor ama ekrana yazdırılmıyor
     const urlParams = new URLSearchParams(window.location.search);
     const plaka = urlParams.get('plaka') || 'Bilinmeyen Plaka';
 
     document.getElementById('anketFormu').addEventListener('submit', function(e) {
         e.preventDefault(); 
-        
         const gonderButon = document.getElementById('gonderButon');
         gonderButon.innerText = "Gönderiliyor...";
         gonderButon.disabled = true;
 
-        const q1 = document.getElementById('q1').value;
-        const q2 = document.getElementById('q2').value;
-        const q3 = document.getElementById('q3').value;
-        const q4 = document.getElementById('q4').value;
-        const q5 = document.getElementById('q5').value;
-        const q6 = document.getElementById('q6').value;
-        const yorum = document.getElementById('yorum').value;
-
-        // URL ile veri gönderimi (Plaka burada hala mevcut)
         const urlIleVeri = GOOGLE_SCRIPT_URL 
             + "?plaka=" + encodeURIComponent(plaka) 
-            + "&q1=" + encodeURIComponent(q1)
-            + "&q2=" + encodeURIComponent(q2)
-            + "&q3=" + encodeURIComponent(q3)
-            + "&q4=" + encodeURIComponent(q4)
-            + "&q5=" + encodeURIComponent(q5)
-            + "&q6=" + encodeURIComponent(q6)
-            + "&yorum=" + encodeURIComponent(yorum);
+            + "&q1=" + encodeURIComponent(document.getElementById('q1').value)
+            + "&q2=" + encodeURIComponent(document.getElementById('q2').value)
+            + "&q3=" + encodeURIComponent(document.getElementById('q3').value)
+            + "&q4=" + encodeURIComponent(document.getElementById('q4').value)
+            + "&q5=" + encodeURIComponent(document.getElementById('q5').value)
+            + "&q6=" + encodeURIComponent(document.getElementById('q6').value)
+            + "&yorum=" + encodeURIComponent(document.getElementById('yorum').value);
 
-        fetch(urlIleVeri, {
-            method: 'POST',
-            mode: 'no-cors' 
-        })
+        fetch(urlIleVeri, { method: 'POST', mode: 'no-cors' })
         .then(() => {
             document.getElementById('anketFormu').style.display = 'none';
             document.getElementById('basariMesaji').style.display = 'block';
             window.scrollTo(0, 0);
         })
-        .catch(error => {
-            alert("Hata oluştu, tekrar deneyin.");
+        .catch(() => {
+            alert("Hata oluştu.");
             gonderButon.disabled = false;
         });
     });
