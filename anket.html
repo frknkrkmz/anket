@@ -31,16 +31,7 @@
         }
         .header h2 { margin: 0; font-size: 20px; }
         .content { padding: 25px 20px; }
-        .plaka-etiket {
-            background-color: #e9ecef;
-            padding: 8px 20px;
-            border-radius: 20px;
-            display: inline-block;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 25px;
-            font-size: 14px;
-        }
+        
         .form-group { 
             margin-bottom: 25px; 
             text-align: left; 
@@ -99,8 +90,6 @@
     </div>
     
     <div class="content">
-        <div class="plaka-etiket" id="plakaGosterge">Araç Bilgisi Yükleniyor...</div>
-
         <form id="anketFormu">
             <div class="form-group">
                 <label>1. Aracın temizliği ve hijyen durumu nasıldı?</label>
@@ -189,18 +178,17 @@
 </div>
 
 <script>
-    // 2. Adımda oluşturduğun YENİ Google Apps Script Web App URL'sini buraya yapıştır:
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYzWK9PW_72n3gEvJDsjd3Z-qI5QUIJg6dW1B8EcOtHySrOFrw_A3RGoQ1a2MCJdXZ/exec";
+    const GOOGLE_SCRIPT_URL = "BURAYA_GOOGLE_SCRIPT_URL_GELMELI";
 
+    // Plaka hala URL'den okunuyor ama ekrana yazdırılmıyor
     const urlParams = new URLSearchParams(window.location.search);
     const plaka = urlParams.get('plaka') || 'Bilinmeyen Plaka';
-    document.getElementById('plakaGosterge').innerText = "Seyahat Edilen Araç: " + plaka;
 
     document.getElementById('anketFormu').addEventListener('submit', function(e) {
         e.preventDefault(); 
         
         const gonderButon = document.getElementById('gonderButon');
-        gonderButon.innerText = "Gönderiliyor, lütfen bekleyin...";
+        gonderButon.innerText = "Gönderiliyor...";
         gonderButon.disabled = true;
 
         const q1 = document.getElementById('q1').value;
@@ -211,7 +199,7 @@
         const q6 = document.getElementById('q6').value;
         const yorum = document.getElementById('yorum').value;
 
-        // Verileri URL'ye ekle
+        // URL ile veri gönderimi (Plaka burada hala mevcut)
         const urlIleVeri = GOOGLE_SCRIPT_URL 
             + "?plaka=" + encodeURIComponent(plaka) 
             + "&q1=" + encodeURIComponent(q1)
@@ -229,11 +217,10 @@
         .then(() => {
             document.getElementById('anketFormu').style.display = 'none';
             document.getElementById('basariMesaji').style.display = 'block';
-            window.scrollTo(0, 0); // Başarılı olunca sayfanın en üstüne kaydır
+            window.scrollTo(0, 0);
         })
         .catch(error => {
-            alert("Bir hata oluştu. Lütfen bağlantınızı kontrol edip tekrar deneyin.");
-            gonderButon.innerText = "Anketi Gönder";
+            alert("Hata oluştu, tekrar deneyin.");
             gonderButon.disabled = false;
         });
     });
