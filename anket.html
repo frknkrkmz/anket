@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yolcu Memnuniyet Anketi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            width: 95%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+        }
+        .header h2 { margin: 0; font-size: 20px; }
+        .content { padding: 25px 20px; }
+        .plaka-etiket {
+            background-color: #e9ecef;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .form-group { 
+            margin-bottom: 25px; 
+            text-align: left; 
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        label { 
+            display: block; 
+            margin-bottom: 12px; 
+            font-weight: bold; 
+            color: #444; 
+            font-size: 14px;
+        }
+        select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 14px;
+            background-color: white;
+        }
+        textarea { resize: vertical; height: 100px; }
+        button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 16px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        button:hover { background-color: #002244; }
+        .basari-mesaji {
+            display: none;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+            padding: 30px 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Yolculuğunuzu Değerlendirin</h2>
+    </div>
+    
+    <div class="content">
+        <div class="plaka-etiket" id="plakaGosterge">Araç Bilgisi Yükleniyor...</div>
+
+        <form id="anketFormu">
+            <div class="form-group">
+                <label>1. Aracın temizliği ve hijyen durumu nasıldı?</label>
+                <select id="q1" required>
+                    <option value="" disabled selected>Puanınızı seçin</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
+                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
+                    <option value="3">⭐⭐⭐ (Orta)</option>
+                    <option value="2">⭐⭐ (Kötü)</option>
+                    <option value="1">⭐ (Çok Kötü)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>2. Şoförün sürüş güvenliği ve trafik kurallarına uyumu nasıldı?</label>
+                <select id="q2" required>
+                    <option value="" disabled selected>Puanınızı seçin</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
+                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
+                    <option value="3">⭐⭐⭐ (Orta)</option>
+                    <option value="2">⭐⭐ (Kötü)</option>
+                    <option value="1">⭐ (Çok Kötü)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>3. Şoförün / Personelin yolculara karşı tutumu nasıldı?</label>
+                <select id="q3" required>
+                    <option value="" disabled selected>Puanınızı seçin</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
+                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
+                    <option value="3">⭐⭐⭐ (Orta)</option>
+                    <option value="2">⭐⭐ (Kötü)</option>
+                    <option value="1">⭐ (Çok Kötü)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>4. Araç içi sıcaklık ve konfor (klima/ısıtma) nasıldı?</label>
+                <select id="q4" required>
+                    <option value="" disabled selected>Puanınızı seçin</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
+                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
+                    <option value="3">⭐⭐⭐ (Orta)</option>
+                    <option value="2">⭐⭐ (Kötü)</option>
+                    <option value="1">⭐ (Çok Kötü)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>5. Seferin zamanında (dakik) gerçekleşmesi konusunda ne düşünüyorsunuz?</label>
+                <select id="q5" required>
+                    <option value="" disabled selected>Puanınızı seçin</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
+                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
+                    <option value="3">⭐⭐⭐ (Orta)</option>
+                    <option value="2">⭐⭐ (Kötü)</option>
+                    <option value="1">⭐ (Çok Kötü)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>6. Firmamızla yaptığınız bu yolculuğu genel olarak nasıl değerlendirirsiniz?</label>
+                <select id="q6" required>
+                    <option value="" disabled selected>Puanınızı seçin</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (Çok İyi)</option>
+                    <option value="4">⭐⭐⭐⭐ (İyi)</option>
+                    <option value="3">⭐⭐⭐ (Orta)</option>
+                    <option value="2">⭐⭐ (Kötü)</option>
+                    <option value="1">⭐ (Çok Kötü)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Eklemek İstedikleriniz (Açıklama / Öneri / Şikayet)</label>
+                <textarea id="yorum" placeholder="Görüşlerinizi buraya yazabilirsiniz..."></textarea>
+            </div>
+
+            <button type="submit" id="gonderButon">Anketi Gönder</button>
+        </form>
+
+        <div class="basari-mesaji" id="basariMesaji">
+            Katılımınız için teşekkür ederiz!<br><br>Görüşleriniz hizmet kalitemizi artırmak için değerlendirilecektir.
+        </div>
+    </div>
+</div>
+
+<script>
+    // 2. Adımda oluşturduğun YENİ Google Apps Script Web App URL'sini buraya yapıştır:
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyYzWK9PW_72n3gEvJDsjd3Z-qI5QUIJg6dW1B8EcOtHySrOFrw_A3RGoQ1a2MCJdXZ/exec";
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const plaka = urlParams.get('plaka') || 'Bilinmeyen Plaka';
+    document.getElementById('plakaGosterge').innerText = "Seyahat Edilen Araç: " + plaka;
+
+    document.getElementById('anketFormu').addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        
+        const gonderButon = document.getElementById('gonderButon');
+        gonderButon.innerText = "Gönderiliyor, lütfen bekleyin...";
+        gonderButon.disabled = true;
+
+        const q1 = document.getElementById('q1').value;
+        const q2 = document.getElementById('q2').value;
+        const q3 = document.getElementById('q3').value;
+        const q4 = document.getElementById('q4').value;
+        const q5 = document.getElementById('q5').value;
+        const q6 = document.getElementById('q6').value;
+        const yorum = document.getElementById('yorum').value;
+
+        // Verileri URL'ye ekle
+        const urlIleVeri = GOOGLE_SCRIPT_URL 
+            + "?plaka=" + encodeURIComponent(plaka) 
+            + "&q1=" + encodeURIComponent(q1)
+            + "&q2=" + encodeURIComponent(q2)
+            + "&q3=" + encodeURIComponent(q3)
+            + "&q4=" + encodeURIComponent(q4)
+            + "&q5=" + encodeURIComponent(q5)
+            + "&q6=" + encodeURIComponent(q6)
+            + "&yorum=" + encodeURIComponent(yorum);
+
+        fetch(urlIleVeri, {
+            method: 'POST',
+            mode: 'no-cors' 
+        })
+        .then(() => {
+            document.getElementById('anketFormu').style.display = 'none';
+            document.getElementById('basariMesaji').style.display = 'block';
+            window.scrollTo(0, 0); // Başarılı olunca sayfanın en üstüne kaydır
+        })
+        .catch(error => {
+            alert("Bir hata oluştu. Lütfen bağlantınızı kontrol edip tekrar deneyin.");
+            gonderButon.innerText = "Anketi Gönder";
+            gonderButon.disabled = false;
+        });
+    });
+</script>
+
+</body>
+</html>
