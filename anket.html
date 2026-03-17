@@ -3,33 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yolcu Memnuniyet Anketi</title>
+    <title>Yolculuğunuzu Değerlendirin</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px 0; display: flex; justify-content: center; min-height: 100vh; }
-        .container { background-color: white; width: 95%; max-width: 500px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden; }
-        .header { background-color: #003366; color: white; padding: 20px; text-align: center; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px 0; display: flex; justify-content: center; min-height: 100vh; }
+        .container { background-color: #f0f2f5; width: 95%; max-width: 500px; }
+        .header { background-color: #003366; color: white; padding: 20px; border-radius: 10px 10px 0 0; text-align: center; }
         .header h2 { margin: 0; font-size: 20px; }
-        .content { padding: 25px 20px; }
-        .form-group { margin-bottom: 25px; background: #fafafa; padding: 15px; border-radius: 8px; border: 1px solid #eee; }
-        label { display: block; margin-bottom: 12px; font-weight: bold; color: #444; font-size: 14px; }
-        select, textarea { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
-        button { background-color: #003366; color: white; border: none; padding: 16px; width: 100%; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; }
-        .basari-mesaji { display: none; color: #28a745; font-weight: bold; padding: 30px 10px; text-align: center; }
+        .content { padding: 15px 0; }
+        .form-group { margin-bottom: 15px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        label { display: block; margin-bottom: 15px; font-weight: bold; color: #333; font-size: 15px; line-height: 1.4; }
+        select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; background-color: #f9f9f9; font-size: 15px; }
+        button { background-color: #003366; color: white; border: none; padding: 16px; width: 100%; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+        
+        .basari-mesaji { display: none; color: #28a745; font-weight: bold; padding: 30px 10px; font-size: 18px; text-align: center; background: white; border-radius: 10px; }
+        .uyari-mesaji { display: none; color: #856404; background-color: #fff3cd; border: 1px solid #ffeeba; padding: 20px; border-radius: 10px; font-weight: bold; font-size: 16px; text-align: center; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="header"><h2>Yolculuğunuzu Değerlendirin</h2></div>
+    
     <div class="content">
+        <div class="uyari-mesaji" id="uyariMesaji">Bu araç için yakın zamanda anket doldurdunuz.<br><br>Görüşleriniz sistemimize kaydedilmiştir.</div>
+
         <form id="anketFormu">
-            <div class="form-group"><label>1. Araç içi temizlik ve ekipanlar yeterli miydi?</label><select id="q1" required><option value="" disabled selected>Seçin</option><option value="5">Çok iyi</option><option value="4">İyi</option><option value="3">Orta</option><option value="2">Kötü</option><option value="1">Çok kötü</option></select></div>
-            <div class="form-group"><label>2. Şoförün sürüş kurallarına uyumunu nasıl değerlendirirsiniz? (Kırmızı ışık,Yüksek hız, Ani fren vb.)</label><select id="q2" required><option value="" disabled selected>Seçin</option><option value="5">Çok iyi</option><option value="4">İyi</option><option value="3">Orta</option><option value="2">Kötü</option><option value="1">Çok kötü</option></select></div>
+            <div class="form-group"><label>1. Araç içi temizlik ve ekipmanlar yeterli miydi?</label><select id="q1" required><option value="" disabled selected>Seçin</option><option value="5">Çok iyi</option><option value="4">İyi</option><option value="3">Orta</option><option value="2">Kötü</option><option value="1">Çok kötü</option></select></div>
+            <div class="form-group"><label>2. Şoförün sürüş kurallarına uyumunu nasıl değerlendirirsiniz? (Kırmızı ışık, Yüksek hız, Ani fren vb.)</label><select id="q2" required><option value="" disabled selected>Seçin</option><option value="5">Çok iyi</option><option value="4">İyi</option><option value="3">Orta</option><option value="2">Kötü</option><option value="1">Çok kötü</option></select></div>
             <div class="form-group"><label>3. Şoförün yolculara karşı tutum ve iletişimi nasıldı?</label><select id="q3" required><option value="" disabled selected>Seçin</option><option value="5">Çok iyi</option><option value="4">İyi</option><option value="3">Orta</option><option value="2">Kötü</option><option value="1">Çok kötü</option></select></div>
             <div class="form-group"><label>4. Klima / havalandırma ve genel konfor durumunu nasıl değerlendirirsiniz?</label><select id="q4" required><option value="" disabled selected>Seçin</option><option value="5">Çok iyi</option><option value="4">İyi</option><option value="3">Orta</option><option value="2">Kötü</option><option value="1">Çok kötü</option></select></div>
+            
             <div class="form-group"><label>5. Bu hattı ne sıklıkla kullanıyorsunuz?</label><select id="q5" required><option value="" disabled selected>Seçin</option><option value="5">Ayda 50 ve üstü</option><option value="4">Ayda 30-50 arası</option><option value="3">Ayda 15-30 arası</option><option value="2">Ayda 3-15 arası</option><option value="1">Ayda 1 veya 2 kez</option></select></div>
-            <div class="form-group"><label>6. Genel olarak yolculuğunuzdan memnun kaldınız mı?</label><select id="q6" required><option value="" disabled selected>Seçin</option><option value="5">Çok memnun</option><option value="4">Memnun</option><option value="3">Kararsız</option><option value="2">Memnun değil</option><option value="1">Hiç memnun değil</option></select></div>
-            <div class="form-group"><label>Eklemek İstedikleriniz</label><textarea id="yorum" placeholder="Görüşlerinizi yazın..."></textarea></div>
+            
+            <div class="form-group"><label>6. Genel olarak yolculuğunuzdan memnun kaldınız mı?</label><select id="q6" required><option value="" disabled selected>Seçin</option><option value="5">Çok iyi</option><option value="4">İyi</option><option value="3">Orta</option><option value="2">Kötü</option><option value="1">Çok kötü</option></select></div>
+            
+            <div class="form-group"><label>Eklemek İstedikleriniz</label><textarea id="yorum" placeholder="Görüşlerinizi yazın..." rows="3"></textarea></div>
+            
             <button type="submit" id="gonderButon">Anketi Gönder</button>
         </form>
         <div class="basari-mesaji" id="basariMesaji">Katılımınız için teşekkür ederiz!</div>
@@ -37,8 +46,18 @@
 </div>
 
 <script>
+    // KENDİ GOOGLE SCRIPT URL'Nİ BURAYA YAPIŞTIR
     const GOOGLE_URL = "https://script.google.com/macros/s/AKfycbyYzWK9PW_72n3gEvJDsjd3Z-qI5QUIJg6dW1B8EcOtHySrOFrw_A3RGoQ1a2MCJdXZ/exec";
     const plaka = new URLSearchParams(window.location.search).get('plaka') || 'Bilinmeyen';
+    
+    const KORUMA_SURESI_SAAT = 2; 
+    const storageKey = "anket_zaman_" + plaka;
+    const sonKatilim = localStorage.getItem(storageKey);
+    
+    if (sonKatilim && (Date.now() - parseInt(sonKatilim)) < (KORUMA_SURESI_SAAT * 60 * 60 * 1000)) {
+        document.getElementById('anketFormu').style.display = 'none';
+        document.getElementById('uyariMesaji').style.display = 'block';
+    }
 
     document.getElementById('anketFormu').addEventListener('submit', function(e) {
         e.preventDefault();
@@ -56,6 +75,7 @@
             + "&yorum=" + encodeURIComponent(document.getElementById('yorum').value);
 
         fetch(GOOGLE_URL + params, { method: 'POST', mode: 'no-cors' }).then(() => {
+            localStorage.setItem(storageKey, Date.now());
             document.getElementById('anketFormu').style.display = 'none';
             document.getElementById('basariMesaji').style.display = 'block';
             window.scrollTo(0, 0);
@@ -64,6 +84,3 @@
 </script>
 </body>
 </html>
-
-
-
